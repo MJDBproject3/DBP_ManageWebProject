@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    head 
+        title #{title}
+    body 
+        h1 #{title}
+        table(border='1')
+            tr 
+                td 평가 대상
+                td 부서명
+                td 직무명
+                td 프로젝트명
+            -for(var i = (page * page_num) - page_num; i < (page * page_num); i++)
+                -if(i > length)
+                    -break
+                -else
+                    -var data = rows[i]
+                    -var idx = data.idx
+                tr 
+                    td 
+                        a(href='/evaluate/eval/' + idx) #{data.name}
+                    td #{data.dept_name}
+                    td #{data.role_name}
+                    td #{data.proj_name}
+            tr 
+                td(colspan='4')
+                    -for(var j = 0; j < rows.length / page_num; j++)
+                        a(href='/evaluate/page/' + (j + 1)) [#{j + 1}]

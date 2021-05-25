@@ -1,0 +1,41 @@
+extends layout
+
+block content
+    head 
+        title #{title}
+    body 
+        h1 #{title}
+        table
+            tr 
+                td 평가 대상
+                td #{row.name}
+                td 직무명
+                td #{row.role_name}
+            tr(colspan='4')
+                td 프로젝트명
+                td #{row.proj_name}
+        
+        form(action="/evaluate/write", method="post") 
+            h2 항목 1 업무수행 평가
+            h4 업무 수행에 있어 능력이 뛰어나다.
+            table(border='1')
+                tr 
+                    td 점수
+                    td 
+                        input(type="range", id="pe_score" name="pe_score" min="0" max="10")
+                tr 
+                    td 코멘트
+                    td
+                        textarea(name="pe_comment" id="pe_comment" cols="50" rows="10")
+            h2 항목 2 소통능력 평가
+            h4 소통에 있어 능력이 뛰어나다.
+            table(border='1')
+                tr 
+                    td 점수
+                    td 
+                        input(type="range", id="com_score" name="com_score" min="0" max="10")
+                tr 
+                    td 코멘트
+                    td
+                        textarea(name="com_comment" id="com_comment" cols="50" rows="10")
+            button(type="submit") 저장
